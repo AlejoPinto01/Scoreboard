@@ -1,11 +1,11 @@
 
+import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-
 /**
  *
  * @author Alejo
@@ -42,6 +42,12 @@ public class Tournament extends javax.swing.JDialog {
 
         lblTournamentName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTournamentName.setText("Tournament name");
+
+        txtTournamentName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTournamentNameKeyPressed(evt);
+            }
+        });
 
         btnTournamentName.setText("Set");
         btnTournamentName.addActionListener(new java.awt.event.ActionListener() {
@@ -80,6 +86,12 @@ public class Tournament extends javax.swing.JDialog {
     private void btnTournamentNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTournamentNameActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnTournamentNameActionPerformed
+
+    private void txtTournamentNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTournamentNameKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_txtTournamentNameKeyPressed
 
     /**
      * @param args the command line arguments

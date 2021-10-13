@@ -23,12 +23,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     //Initialize variables
     List<Player> playerList = new ArrayList<>();
-    private String tournamentName;
-    private String player1;
-    private String player2;
-    private int score1;
-    private int score2;
-    private String round;
+    private String player1, player2, tournamentName, round, sponsor1, sponsor2;
+    private int score1,score2;
     File playersFile = new File("players.csv");
     File p1File = new File("player1.txt");
     File p2File = new File("player2.txt");
@@ -158,13 +154,13 @@ public class MainFrame extends javax.swing.JFrame {
         BufferedWriter p2FullFileBufferedWriter = new BufferedWriter(new FileWriter(p2FullFile));
         p1BufferedWriter.write(player1 = txtPlayer1.getText());
         p2BufferedWriter.write(player2 = txtPlayer2.getText());
-        p1sponsorBufferedWriter.write(txtSponsor1.getText());
-        p2sponsorBufferedWriter.write(txtSponsor2.getText());
+        p1sponsorBufferedWriter.write(sponsor1=txtSponsor1.getText());
+        p2sponsorBufferedWriter.write(sponsor2=txtSponsor2.getText());
         roundBufferedWriter.write(round = btnWL.getText() + " " + cmbRound.getSelectedItem().toString());
         p1ScoreBufferedWriter.write(spnScore1.getValue().toString());
         p2ScorBufferedWriter.write(spnScore2.getValue().toString());
-        p1FullFileBufferedWriter.write(txtSponsor1.getText() + "|" + player1);
-        p2FullFileBufferedWriter.write(txtSponsor2.getText() + "|" + player2);
+        p1FullFileBufferedWriter.write(sponsor1 + "|" + player1);
+        p2FullFileBufferedWriter.write(sponsor2 + "|" + player2);
         p1BufferedWriter.close();
         p2BufferedWriter.close();
         p1sponsorBufferedWriter.close();
@@ -222,7 +218,8 @@ public class MainFrame extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnSaveP1 = new javax.swing.JButton();
         btnSaveP2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
+        lblOutput = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -305,13 +302,15 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 0, 51));
-        jButton1.setText("CLEAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnClear.setBackground(new java.awt.Color(255, 0, 51));
+        btnClear.setText("CLEAR");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnClearActionPerformed(evt);
             }
         });
+
+        lblOutput.setText("Output:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -353,7 +352,8 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(cmbRound, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBestOf))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -386,8 +386,10 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnUpdate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(btnClear)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(lblOutput)
+                .addContainerGap())
         );
 
         pack();
@@ -426,6 +428,7 @@ public class MainFrame extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        lblOutput.setText("Output: " + round + " - " + sponsor1 + "|" + player1 + " vs " + sponsor2 + "|" + player2);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void cmbRoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRoundActionPerformed
@@ -466,14 +469,14 @@ public class MainFrame extends javax.swing.JFrame {
         savePlayer(txtSponsor2, txtPlayer2);
     }//GEN-LAST:event_btnSaveP2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         txtPlayer1.setText("");
         txtPlayer2.setText("");
         txtSponsor1.setText("");
         txtSponsor2.setText("");
         spnScore1.setValue((Integer) 0);
         spnScore2.setValue((Integer) 0);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -507,13 +510,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBestOf;
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnSaveP1;
     private javax.swing.JButton btnSaveP2;
     private javax.swing.JButton btnSwapPlayers;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnWL;
     private javax.swing.JComboBox<String> cmbRound;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel lblOutput;
     private javax.swing.JSpinner spnScore1;
     private javax.swing.JSpinner spnScore2;
     private javax.swing.JToggleButton tglLoser1;
