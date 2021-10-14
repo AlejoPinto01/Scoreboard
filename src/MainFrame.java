@@ -7,9 +7,13 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -121,25 +125,9 @@ public class MainFrame extends javax.swing.JFrame {
         s.add(p.getNickname());
     }
 
-    private void autocomplete(JTextField txt) {
-        String to_check = txt.getText();
-        int to_check_len = to_check.length();
-        for (String data : s) {
-            String check_from_data = "";
-            for (int i = 0; i < to_check_len; i++) {
-                if (to_check_len <= data.length()) {
-                    check_from_data = check_from_data + data.charAt(i);
-                }
-            }
-            //System.out.print(check_from_data);
-            if (check_from_data.equals(to_check)) {
-                //System.out.print("Found");
-                txt.setText(data);
-                txt.setSelectionStart(to_check_len);
-                txt.setSelectionEnd(data.length());
-                break;
-            }
-        }
+    private void autocomplete() {
+        AutoCompleteDecorator.decorate(cmbCaster1);
+        AutoCompleteDecorator.decorate(cmbCaster2);
     }
 
     private void update() throws IOException {
@@ -185,6 +173,7 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         setLocationRelativeTo(null);
+        autocomplete();
         try {
             initFiles();
         } catch (IOException ex) {
@@ -220,15 +209,21 @@ public class MainFrame extends javax.swing.JFrame {
         btnSaveP2 = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         lblOutput = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        cmbCaster1 = new javax.swing.JComboBox<>();
+        cmbCaster2 = new javax.swing.JComboBox<>();
+        lblMic = new javax.swing.JLabel();
+        lblMic1 = new javax.swing.JLabel();
+        btnOBS = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tournament");
         setLocationByPlatform(true);
+        setResizable(false);
 
-        txtPlayer1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPlayer1ActionPerformed(evt);
-            }
-        });
         txtPlayer1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtPlayer1KeyReleased(evt);
@@ -312,6 +307,34 @@ public class MainFrame extends javax.swing.JFrame {
 
         lblOutput.setText("Output:");
 
+        cmbCaster1.setEditable(true);
+        cmbCaster1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Franco", "Nimbus", "Legi", "PinkAplier", "Ramonium" }));
+
+        cmbCaster2.setEditable(true);
+        cmbCaster2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        lblMic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mic.png"))); // NOI18N
+
+        lblMic1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMic1.setText("VS");
+        lblMic1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        btnOBS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/obs.png"))); // NOI18N
+        btnOBS.setText("Scene tool");
+        btnOBS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOBSActionPerformed(evt);
+            }
+        });
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -319,6 +342,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -328,23 +352,25 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(txtPlayer1))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnSaveP1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(spnScore1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tglLoser1)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSwapPlayers, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnSwapPlayers, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                            .addComponent(lblMic1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtSponsor2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPlayer2, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
+                                .addComponent(txtPlayer2))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(tglLoser2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(spnScore2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnSaveP2))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnWL, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -353,7 +379,16 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBestOf))
                     .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cmbCaster1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addComponent(lblMic)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmbCaster2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnOBS)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -377,17 +412,27 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tglLoser2)
                         .addComponent(spnScore2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSaveP2)))
+                        .addComponent(btnSaveP2)
+                        .addComponent(lblMic1)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbRound, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBestOf)
                     .addComponent(btnWL))
                 .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbCaster1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbCaster2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMic))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(btnOBS)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnUpdate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnClear)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblOutput)
                 .addContainerGap())
         );
@@ -447,21 +492,17 @@ public class MainFrame extends javax.swing.JFrame {
         savePlayer(txtSponsor1, txtPlayer1);
     }//GEN-LAST:event_btnSaveP1ActionPerformed
 
-    private void txtPlayer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlayer1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPlayer1ActionPerformed
-
     private void txtPlayer1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlayer1KeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
         } else {
-            autocomplete(txtPlayer1);
+            //autocomplete(txtPlayer1);
         }
     }//GEN-LAST:event_txtPlayer1KeyReleased
 
     private void txtPlayer2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlayer2KeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
         } else {
-            autocomplete(txtPlayer2);
+            //autocomplete(txtPlayer2);
         }
     }//GEN-LAST:event_txtPlayer2KeyReleased
 
@@ -477,6 +518,10 @@ public class MainFrame extends javax.swing.JFrame {
         spnScore1.setValue((Integer) 0);
         spnScore2.setValue((Integer) 0);
     }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnOBSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOBSActionPerformed
+        new SceneControl().setVisible(true);
+    }//GEN-LAST:event_btnOBSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -511,12 +556,21 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBestOf;
     private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnOBS;
     private javax.swing.JButton btnSaveP1;
     private javax.swing.JButton btnSaveP2;
     private javax.swing.JButton btnSwapPlayers;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnWL;
+    private javax.swing.JComboBox<String> cmbCaster1;
+    private javax.swing.JComboBox<String> cmbCaster2;
     private javax.swing.JComboBox<String> cmbRound;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblMic;
+    private javax.swing.JLabel lblMic1;
     private javax.swing.JLabel lblOutput;
     private javax.swing.JSpinner spnScore1;
     private javax.swing.JSpinner spnScore2;
