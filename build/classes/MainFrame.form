@@ -92,17 +92,17 @@
                       <Component id="btnBestOf" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="btnClear" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblOutput" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblOutput" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnOBS" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="cmbCaster1" min="-2" pref="275" max="-2" attributes="0"/>
                       <EmptySpace pref="11" max="32767" attributes="0"/>
                       <Component id="lblMic" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="cmbCaster2" min="-2" pref="275" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="btnOBS" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -152,14 +152,15 @@
                   <Component id="cmbCaster2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblMic" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
-              <Component id="btnOBS" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnClear" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="lblOutput" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="lblOutput" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnOBS" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -334,7 +335,7 @@
     <Component class="javax.swing.JLabel" name="lblMic">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/mic.png"/>
+          <Image iconType="3" name="/images/mic.png"/>
         </Property>
       </Properties>
     </Component>
@@ -348,7 +349,7 @@
     <Component class="javax.swing.JButton" name="btnOBS">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/obs.png"/>
+          <Image iconType="3" name="/images/obs.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Scene tool"/>
       </Properties>
