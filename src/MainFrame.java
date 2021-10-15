@@ -90,7 +90,10 @@ public class MainFrame extends javax.swing.JFrame {
             playerList.clear();
             while ((curLine = br.readLine()) != null) {
                 String[] playerInfo = curLine.split(",");
-                playerList.add(new Player(playerInfo[0], playerInfo[1]));
+                Player p = new Player(playerInfo[0], playerInfo[1]);
+                playerList.add(p);
+                cmbPlayer1.addItem(p.getSponsor().isEmpty() ? p.getNickname() : p.getSponsor()+"|"+p.getNickname());
+                cmbPlayer2.addItem(p.getSponsor().isEmpty() ? p.getNickname() : p.getSponsor()+"|"+p.getNickname());
             }
         } catch (FileNotFoundException fnfe) {
             System.err.println("File not found");
@@ -128,6 +131,8 @@ public class MainFrame extends javax.swing.JFrame {
     private void autocomplete() {
         AutoCompleteDecorator.decorate(cmbCaster1);
         AutoCompleteDecorator.decorate(cmbCaster2);
+        AutoCompleteDecorator.decorate(cmbPlayer1);
+        AutoCompleteDecorator.decorate(cmbPlayer2);
     }
 
     private void update() throws IOException {
