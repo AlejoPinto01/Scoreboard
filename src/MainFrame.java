@@ -28,7 +28,7 @@ public class MainFrame extends javax.swing.JFrame {
     //Initialize variables
     List<Player> playerList = new ArrayList<>();
     private String player1, player2, tournamentName, round, sponsor1, sponsor2;
-    private int score1,score2;
+    private int score1, score2;
     File playersFile = new File("players.csv");
     File p1File = new File("player1.txt");
     File p2File = new File("player2.txt");
@@ -109,8 +109,8 @@ public class MainFrame extends javax.swing.JFrame {
             s.add(p.getNickname());
         }
     }
-    
-    private void savePlayer (JTextField sponsor, JTextField player) {
+
+    private void savePlayer(JTextField sponsor, JTextField player) {
         Player p = new Player(sponsor.getText(), player.getText());
         if (!playerList.contains(p)) {
             playerList.add(p);
@@ -142,13 +142,13 @@ public class MainFrame extends javax.swing.JFrame {
         BufferedWriter p2FullFileBufferedWriter = new BufferedWriter(new FileWriter(p2FullFile));
         p1BufferedWriter.write(player1 = txtPlayer1.getText());
         p2BufferedWriter.write(player2 = txtPlayer2.getText());
-        p1sponsorBufferedWriter.write(sponsor1=txtSponsor1.getText());
-        p2sponsorBufferedWriter.write(sponsor2=txtSponsor2.getText());
+        p1sponsorBufferedWriter.write(sponsor1 = txtSponsor1.getText() + "|");
+        p2sponsorBufferedWriter.write(sponsor2 = txtSponsor2.getText() + "|");
         roundBufferedWriter.write(round = btnWL.getText() + " " + cmbRound.getSelectedItem().toString());
         p1ScoreBufferedWriter.write(spnScore1.getValue().toString());
         p2ScorBufferedWriter.write(spnScore2.getValue().toString());
-        p1FullFileBufferedWriter.write(sponsor1 + "|" + player1);
-        p2FullFileBufferedWriter.write(sponsor2 + "|" + player2);
+        p1FullFileBufferedWriter.write(sponsor1 + player1);
+        p2FullFileBufferedWriter.write(sponsor2 + player2);
         p1BufferedWriter.close();
         p2BufferedWriter.close();
         p1sponsorBufferedWriter.close();
@@ -210,8 +210,13 @@ public class MainFrame extends javax.swing.JFrame {
         lblMic = new javax.swing.JLabel();
         lblMic1 = new javax.swing.JLabel();
         btnOBS = new javax.swing.JButton();
+        cmbPlayer1 = new javax.swing.JComboBox<>();
+        cmbPlayer2 = new javax.swing.JComboBox<>();
+        cmbCharacter1 = new javax.swing.JComboBox<>();
+        cmbCharacter2 = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -322,7 +327,26 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        cmbPlayer1.setEditable(true);
+
+        cmbPlayer2.setEditable(true);
+
+        cmbCharacter1.setEditable(true);
+        cmbCharacter1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Banjo & Kazooie", "Bayonetta", "Bowser", "Bowser Jr.", "Byleth[b]", "Captain Falcon", "Charizard", "Chrom", "Cloud", "Corrin", "Daisy", "Dark Pit", "Dark Samus", "Diddy Kong", "Donkey Kong", "Dr. Mario", "Duck Hunt", "Falco", "Fox", "Ganondorf", "Greninja", "Hero", "Ice Climbers", "Ike", "Incineroar", "Inkling", "Isabelle", "Ivysaur", "Jigglypuff", "Joker", "Kazuya", "Ken", "King Dedede", "King K. Rool", "Kirby", "Link", "Little Mac", "Lucario", "Lucas", "Lucina", "Luigi", "Mario", "Marth", "Mega Man", "Meta Knight", "Mewtwo", "Mii Brawler", "Mii Gunner", "Mii Swordfighter", "Min Min", "Mr. Game & Watch", "Mythra", "Ness", "Olimar", "Pac-Man", "Palutena", "Peach", "Pichu", "Pikachu", "Piranha Plant", "Pit", "Pyra", "Richter", "Ridley", "R.O.B.", "Robin", "Rosalina & Luma", "Roy[e]", "Ryu", "Samus", "Sephiroth", "Sheik", "Shulk", "Simon", "Snake", "Sonic", "Sora", "Squirtle", "Steve", "Terry", "Toon Link", "Villager", "Wario", "Wii Fit Trainer", "Wolf", "Yoshi", "Young Link", "Zelda", "Zero Suit Samus" }));
+
+        cmbCharacter2.setEditable(true);
+        cmbCharacter2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Banjo & Kazooie", "Bayonetta", "Bowser", "Bowser Jr.", "Byleth[b]", "Captain Falcon", "Charizard", "Chrom", "Cloud", "Corrin", "Daisy", "Dark Pit", "Dark Samus", "Diddy Kong", "Donkey Kong", "Dr. Mario", "Duck Hunt", "Falco", "Fox", "Ganondorf", "Greninja", "Hero", "Ice Climbers", "Ike", "Incineroar", "Inkling", "Isabelle", "Ivysaur", "Jigglypuff", "Joker", "Kazuya", "Ken", "King Dedede", "King K. Rool", "Kirby", "Link", "Little Mac", "Lucario", "Lucas", "Lucina", "Luigi", "Mario", "Marth", "Mega Man", "Meta Knight", "Mewtwo", "Mii Brawler", "Mii Gunner", "Mii Swordfighter", "Min Min", "Mr. Game & Watch", "Mythra", "Ness", "Olimar", "Pac-Man", "Palutena", "Peach", "Pichu", "Pikachu", "Piranha Plant", "Pit", "Pyra", "Richter", "Ridley", "R.O.B.", "Robin", "Rosalina & Luma", "Roy[e]", "Ryu", "Samus", "Sephiroth", "Sheik", "Shulk", "Simon", "Snake", "Sonic", "Sora", "Squirtle", "Steve", "Terry", "Toon Link", "Villager", "Wario", "Wii Fit Trainer", "Wolf", "Yoshi", "Young Link", "Zelda", "Zero Suit Samus" }));
+
         jMenu1.setText("File");
+
+        jMenuItem1.setText("Change tournament");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -347,7 +371,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(txtPlayer1))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnSaveP1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                                 .addComponent(spnScore1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tglLoser1)))
@@ -365,7 +389,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(tglLoser2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(spnScore2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                                 .addComponent(btnSaveP2))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnWL, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -379,11 +403,17 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnOBS))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cmbCaster1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(cmbCharacter1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbPlayer1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbCaster1, javax.swing.GroupLayout.Alignment.LEADING, 0, 275, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addComponent(lblMic)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbCaster2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cmbCaster2, 0, 275, Short.MAX_VALUE)
+                            .addComponent(cmbPlayer2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbCharacter2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -421,7 +451,15 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(cmbCaster1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbCaster2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMic))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbCharacter1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbCharacter2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(btnUpdate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnClear)
@@ -468,7 +506,7 @@ public class MainFrame extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        lblOutput.setText("Output: " + round + " - " + sponsor1 + "|" + player1 + " vs " + sponsor2 + "|" + player2);
+        lblOutput.setText("Output: " + tournamentName + " - " + round + " - " + sponsor1 + player1 + " vs " + sponsor2 + player2);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void cmbRoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRoundActionPerformed
@@ -518,6 +556,10 @@ public class MainFrame extends javax.swing.JFrame {
         new SceneControl().setVisible(true);
     }//GEN-LAST:event_btnOBSActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        setTournament();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     public static void main(String args[]) {
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -548,10 +590,15 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnWL;
     private javax.swing.JComboBox<String> cmbCaster1;
     private javax.swing.JComboBox<String> cmbCaster2;
+    private javax.swing.JComboBox<String> cmbCharacter1;
+    private javax.swing.JComboBox<String> cmbCharacter2;
+    private javax.swing.JComboBox<String> cmbPlayer1;
+    private javax.swing.JComboBox<String> cmbPlayer2;
     private javax.swing.JComboBox<String> cmbRound;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblMic;
     private javax.swing.JLabel lblMic1;

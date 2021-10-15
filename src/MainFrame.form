@@ -8,6 +8,16 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Change tournament"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
@@ -57,7 +67,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="btnSaveP1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="117" max="32767" attributes="0"/>
                               <Component id="spnScore1" min="-2" pref="45" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="tglLoser1" min="-2" max="-2" attributes="0"/>
@@ -79,7 +89,7 @@
                               <Component id="tglLoser2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="spnScore2" min="-2" pref="45" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="118" max="32767" attributes="0"/>
                               <Component id="btnSaveP2" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -98,11 +108,19 @@
                       <Component id="btnOBS" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="cmbCaster1" min="-2" pref="275" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="cmbCharacter1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cmbPlayer1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cmbCaster1" alignment="0" pref="275" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace pref="11" max="32767" attributes="0"/>
                       <Component id="lblMic" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="cmbCaster2" min="-2" pref="275" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="cmbCaster2" pref="275" max="32767" attributes="0"/>
+                          <Component id="cmbPlayer2" max="32767" attributes="0"/>
+                          <Component id="cmbCharacter2" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -152,7 +170,17 @@
                   <Component id="cmbCaster2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblMic" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cmbPlayer1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbPlayer2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cmbCharacter1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbCharacter2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="43" max="32767" attributes="0"/>
               <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnClear" min="-2" max="-2" attributes="0"/>
@@ -356,6 +384,230 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOBSActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbPlayer1">
+      <Properties>
+        <Property name="editable" type="boolean" value="true"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbPlayer2">
+      <Properties>
+        <Property name="editable" type="boolean" value="true"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbCharacter1">
+      <Properties>
+        <Property name="editable" type="boolean" value="true"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="89">
+            <StringItem index="0" value="Banjo &amp; Kazooie"/>
+            <StringItem index="1" value="Bayonetta"/>
+            <StringItem index="2" value="Bowser"/>
+            <StringItem index="3" value="Bowser Jr."/>
+            <StringItem index="4" value="Byleth[b]"/>
+            <StringItem index="5" value="Captain Falcon"/>
+            <StringItem index="6" value="Charizard"/>
+            <StringItem index="7" value="Chrom"/>
+            <StringItem index="8" value="Cloud"/>
+            <StringItem index="9" value="Corrin"/>
+            <StringItem index="10" value="Daisy"/>
+            <StringItem index="11" value="Dark Pit"/>
+            <StringItem index="12" value="Dark Samus"/>
+            <StringItem index="13" value="Diddy Kong"/>
+            <StringItem index="14" value="Donkey Kong"/>
+            <StringItem index="15" value="Dr. Mario"/>
+            <StringItem index="16" value="Duck Hunt"/>
+            <StringItem index="17" value="Falco"/>
+            <StringItem index="18" value="Fox"/>
+            <StringItem index="19" value="Ganondorf"/>
+            <StringItem index="20" value="Greninja"/>
+            <StringItem index="21" value="Hero"/>
+            <StringItem index="22" value="Ice Climbers"/>
+            <StringItem index="23" value="Ike"/>
+            <StringItem index="24" value="Incineroar"/>
+            <StringItem index="25" value="Inkling"/>
+            <StringItem index="26" value="Isabelle"/>
+            <StringItem index="27" value="Ivysaur"/>
+            <StringItem index="28" value="Jigglypuff"/>
+            <StringItem index="29" value="Joker"/>
+            <StringItem index="30" value="Kazuya"/>
+            <StringItem index="31" value="Ken"/>
+            <StringItem index="32" value="King Dedede"/>
+            <StringItem index="33" value="King K. Rool"/>
+            <StringItem index="34" value="Kirby"/>
+            <StringItem index="35" value="Link"/>
+            <StringItem index="36" value="Little Mac"/>
+            <StringItem index="37" value="Lucario"/>
+            <StringItem index="38" value="Lucas"/>
+            <StringItem index="39" value="Lucina"/>
+            <StringItem index="40" value="Luigi"/>
+            <StringItem index="41" value="Mario"/>
+            <StringItem index="42" value="Marth"/>
+            <StringItem index="43" value="Mega Man"/>
+            <StringItem index="44" value="Meta Knight"/>
+            <StringItem index="45" value="Mewtwo"/>
+            <StringItem index="46" value="Mii Brawler"/>
+            <StringItem index="47" value="Mii Gunner"/>
+            <StringItem index="48" value="Mii Swordfighter"/>
+            <StringItem index="49" value="Min Min"/>
+            <StringItem index="50" value="Mr. Game &amp; Watch"/>
+            <StringItem index="51" value="Mythra"/>
+            <StringItem index="52" value="Ness"/>
+            <StringItem index="53" value="Olimar"/>
+            <StringItem index="54" value="Pac-Man"/>
+            <StringItem index="55" value="Palutena"/>
+            <StringItem index="56" value="Peach"/>
+            <StringItem index="57" value="Pichu"/>
+            <StringItem index="58" value="Pikachu"/>
+            <StringItem index="59" value="Piranha Plant"/>
+            <StringItem index="60" value="Pit"/>
+            <StringItem index="61" value="Pyra"/>
+            <StringItem index="62" value="Richter"/>
+            <StringItem index="63" value="Ridley"/>
+            <StringItem index="64" value="R.O.B."/>
+            <StringItem index="65" value="Robin"/>
+            <StringItem index="66" value="Rosalina &amp; Luma"/>
+            <StringItem index="67" value="Roy[e]"/>
+            <StringItem index="68" value="Ryu"/>
+            <StringItem index="69" value="Samus"/>
+            <StringItem index="70" value="Sephiroth"/>
+            <StringItem index="71" value="Sheik"/>
+            <StringItem index="72" value="Shulk"/>
+            <StringItem index="73" value="Simon"/>
+            <StringItem index="74" value="Snake"/>
+            <StringItem index="75" value="Sonic"/>
+            <StringItem index="76" value="Sora"/>
+            <StringItem index="77" value="Squirtle"/>
+            <StringItem index="78" value="Steve"/>
+            <StringItem index="79" value="Terry"/>
+            <StringItem index="80" value="Toon Link"/>
+            <StringItem index="81" value="Villager"/>
+            <StringItem index="82" value="Wario"/>
+            <StringItem index="83" value="Wii Fit Trainer"/>
+            <StringItem index="84" value="Wolf"/>
+            <StringItem index="85" value="Yoshi"/>
+            <StringItem index="86" value="Young Link"/>
+            <StringItem index="87" value="Zelda"/>
+            <StringItem index="88" value="Zero Suit Samus"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbCharacter2">
+      <Properties>
+        <Property name="editable" type="boolean" value="true"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="89">
+            <StringItem index="0" value="Banjo &amp; Kazooie"/>
+            <StringItem index="1" value="Bayonetta"/>
+            <StringItem index="2" value="Bowser"/>
+            <StringItem index="3" value="Bowser Jr."/>
+            <StringItem index="4" value="Byleth[b]"/>
+            <StringItem index="5" value="Captain Falcon"/>
+            <StringItem index="6" value="Charizard"/>
+            <StringItem index="7" value="Chrom"/>
+            <StringItem index="8" value="Cloud"/>
+            <StringItem index="9" value="Corrin"/>
+            <StringItem index="10" value="Daisy"/>
+            <StringItem index="11" value="Dark Pit"/>
+            <StringItem index="12" value="Dark Samus"/>
+            <StringItem index="13" value="Diddy Kong"/>
+            <StringItem index="14" value="Donkey Kong"/>
+            <StringItem index="15" value="Dr. Mario"/>
+            <StringItem index="16" value="Duck Hunt"/>
+            <StringItem index="17" value="Falco"/>
+            <StringItem index="18" value="Fox"/>
+            <StringItem index="19" value="Ganondorf"/>
+            <StringItem index="20" value="Greninja"/>
+            <StringItem index="21" value="Hero"/>
+            <StringItem index="22" value="Ice Climbers"/>
+            <StringItem index="23" value="Ike"/>
+            <StringItem index="24" value="Incineroar"/>
+            <StringItem index="25" value="Inkling"/>
+            <StringItem index="26" value="Isabelle"/>
+            <StringItem index="27" value="Ivysaur"/>
+            <StringItem index="28" value="Jigglypuff"/>
+            <StringItem index="29" value="Joker"/>
+            <StringItem index="30" value="Kazuya"/>
+            <StringItem index="31" value="Ken"/>
+            <StringItem index="32" value="King Dedede"/>
+            <StringItem index="33" value="King K. Rool"/>
+            <StringItem index="34" value="Kirby"/>
+            <StringItem index="35" value="Link"/>
+            <StringItem index="36" value="Little Mac"/>
+            <StringItem index="37" value="Lucario"/>
+            <StringItem index="38" value="Lucas"/>
+            <StringItem index="39" value="Lucina"/>
+            <StringItem index="40" value="Luigi"/>
+            <StringItem index="41" value="Mario"/>
+            <StringItem index="42" value="Marth"/>
+            <StringItem index="43" value="Mega Man"/>
+            <StringItem index="44" value="Meta Knight"/>
+            <StringItem index="45" value="Mewtwo"/>
+            <StringItem index="46" value="Mii Brawler"/>
+            <StringItem index="47" value="Mii Gunner"/>
+            <StringItem index="48" value="Mii Swordfighter"/>
+            <StringItem index="49" value="Min Min"/>
+            <StringItem index="50" value="Mr. Game &amp; Watch"/>
+            <StringItem index="51" value="Mythra"/>
+            <StringItem index="52" value="Ness"/>
+            <StringItem index="53" value="Olimar"/>
+            <StringItem index="54" value="Pac-Man"/>
+            <StringItem index="55" value="Palutena"/>
+            <StringItem index="56" value="Peach"/>
+            <StringItem index="57" value="Pichu"/>
+            <StringItem index="58" value="Pikachu"/>
+            <StringItem index="59" value="Piranha Plant"/>
+            <StringItem index="60" value="Pit"/>
+            <StringItem index="61" value="Pyra"/>
+            <StringItem index="62" value="Richter"/>
+            <StringItem index="63" value="Ridley"/>
+            <StringItem index="64" value="R.O.B."/>
+            <StringItem index="65" value="Robin"/>
+            <StringItem index="66" value="Rosalina &amp; Luma"/>
+            <StringItem index="67" value="Roy[e]"/>
+            <StringItem index="68" value="Ryu"/>
+            <StringItem index="69" value="Samus"/>
+            <StringItem index="70" value="Sephiroth"/>
+            <StringItem index="71" value="Sheik"/>
+            <StringItem index="72" value="Shulk"/>
+            <StringItem index="73" value="Simon"/>
+            <StringItem index="74" value="Snake"/>
+            <StringItem index="75" value="Sonic"/>
+            <StringItem index="76" value="Sora"/>
+            <StringItem index="77" value="Squirtle"/>
+            <StringItem index="78" value="Steve"/>
+            <StringItem index="79" value="Terry"/>
+            <StringItem index="80" value="Toon Link"/>
+            <StringItem index="81" value="Villager"/>
+            <StringItem index="82" value="Wario"/>
+            <StringItem index="83" value="Wii Fit Trainer"/>
+            <StringItem index="84" value="Wolf"/>
+            <StringItem index="85" value="Yoshi"/>
+            <StringItem index="86" value="Young Link"/>
+            <StringItem index="87" value="Zelda"/>
+            <StringItem index="88" value="Zero Suit Samus"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
